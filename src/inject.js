@@ -131,8 +131,6 @@ const checkForRepoPage = async () => {
 
   const ns = document.querySelector('ul.UnderlineNav-body')
   const navElem = document.getElementById(NAV_ELEM_ID)
-  const tdElems = document.querySelector('span.github-repo-size-div')
-
   if (ns && !navElem) {
     getAPIData(repoObj.repo).then(summary => {
       if (summary && summary.size) {
@@ -145,6 +143,16 @@ const checkForRepoPage = async () => {
     })
   }
 
+  const jsRepoNav = document.querySelector('nav.js-repo-nav')
+  if (jsRepoNav) {
+    jsRepoNav.className += ' container-xl'
+  }
+  const titleBelowHeader = document.querySelector('main').querySelector('div').querySelector('div')
+  if (titleBelowHeader) {
+    titleBelowHeader.className += ' container-xl'
+  }
+
+  const tdElems = document.querySelector('span.github-repo-size-div')
   if (tdElems) return
 
   const tree = await getAPIData(`${repoObj.repo}/contents/${repoObj.currentPath}?ref=${repoObj.ref}`)
