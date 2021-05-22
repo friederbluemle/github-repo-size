@@ -6,6 +6,8 @@ const GITHUB_TOKEN_KEY = 'x-github-token'
 
 const storage = chrome.storage.sync || chrome.storage.local
 
+const renderFileSizes = false
+
 let githubToken
 
 const getRepoObject = () => {
@@ -150,6 +152,10 @@ const checkForRepoPage = async () => {
   const titleBelowHeader = document.querySelector('main').querySelector('div').querySelector('div')
   if (titleBelowHeader) {
     titleBelowHeader.className += ' container-xl'
+  }
+
+  if (!renderFileSizes) {
+    return
   }
 
   const tdElems = document.querySelector('span.github-repo-size-div')
